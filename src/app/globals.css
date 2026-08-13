@@ -24,3 +24,76 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Continuous Animated Typography Styles */
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes subtle-pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.25));
+  }
+  50% {
+    filter: drop-shadow(0 0 30px rgba(148, 163, 184, 0.45));
+  }
+}
+
+.animate-gradient-text {
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #e2e8f0 25%,
+    #94a3b8 50%,
+    #cbd5e1 75%,
+    #ffffff 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-flow 6s ease infinite;
+}
+
+.animate-shimmer-highlight {
+  background: linear-gradient(
+    90deg,
+    #f8fafc 0%,
+    #e2e8f0 20%,
+    #38bdf8 40%,
+    #818cf8 60%,
+    #f8fafc 80%,
+    #ffffff 100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-flow 4.5s ease-in-out infinite;
+}
+
+.animate-text-glow {
+  animation: subtle-pulse-glow 4s ease-in-out infinite;
+}
+
+@keyframes line-shimmer {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scaleX(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.05);
+  }
+}
+
+.animate-line-glow {
+  animation: line-shimmer 3s ease-in-out infinite;
+}
+
