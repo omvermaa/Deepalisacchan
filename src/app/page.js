@@ -5,7 +5,7 @@ import { Star, ArrowRight, ShieldCheck, Award, HeartHandshake, CheckCircle2 } fr
 import dbConnect from '@/lib/mongodb';
 import Blog from '@/models/Blog';
 
-export const revalidate = 60;
+export const dynamic = 'force-dynamic';
 
 export default async function Home() {
   await dbConnect();

@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import ImageCarousel from "../../../components/blogs/ImageCarousel";
 import Link from "next/link";
 
-export const revalidate = 60; // Revalidate dynamic page every 60s
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;

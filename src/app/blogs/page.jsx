@@ -2,8 +2,7 @@ import Link from "next/link";
 import dbConnect from "../../lib/mongodb";
 import Blog from "../../models/Blog";
 
-// Optional: force dynamic if want real-time updates, or use revalidate.
-export const revalidate = 60; // Revalidate every 60 seconds
+export const dynamic = 'force-dynamic';
 
 export const metadata = {
   title: "Health & Nutrition Blogs | Dietician Deepali Sachan",
