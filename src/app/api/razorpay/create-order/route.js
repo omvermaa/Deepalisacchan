@@ -3,11 +3,19 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
   try {
+    const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
+    const keySecret = process.env.RAZORPAY_KEY_SECRET;
+
+    if (!keyId || !keySecret) {
+      console.error("Razorpay Error: Missing NEXT_PUBLIC_RAZORPAY_KEY_ID or RAZORPAY_KEY_SECRET in environment variables.");
+      return NextResponse.json({ error: "Payment service is not configured. Please contact support." }, { status: 500 });
+    }
+
     const { amount } = await request.json(); 
 
     const razorpay = new Razorpay({
-      key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || 'dummy_id',
-      key_secret: process.env.RAZORPAY_KEY_SECRET || 'dummy_secret',
+      key_id: keyId,
+      key_secret: keySecret,
     });
 
     const options = {
@@ -20,7 +28,7 @@ export async function POST(request) {
 
     return NextResponse.json(order, { status: 200 });
   } catch (error) {
-    console.error("Razorpay Error:", error);
-    return NextResponse.json({ error: "Something went wrong creating order" }, { status: 500 });
+    console.error("Razorpay Order Creation Error:", error?.error?.description || error.message || error);
+    return NextResponse.json({ error: error?.error?.description || "Something went wrong creating order" }, { status: 500 });
   }
 }

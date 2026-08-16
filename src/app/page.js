@@ -2,8 +2,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 import BmiCalculator from '@/components/calculator/BmiCalculator';
 import { Star, ArrowRight, ShieldCheck, Award, HeartHandshake, CheckCircle2 } from 'lucide-react';
+import dbConnect from '@/lib/mongodb';
+import Blog from '@/models/Blog';
 
-export default function Home() {
+export const revalidate = 60;
+
+export default async function Home() {
+  await dbConnect();
+  const recentBlogs = await Blog.find({}).sort({ createdAt: -1 }).limit(3).lean();
+
   return (
     <div className="flex flex-col min-h-screen bg-white text-slate-900">
       {/* Hero Section with Tinted Background Image */}
@@ -177,6 +184,64 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Recent Blogs Section */}
+      <section className="py-20 bg-white border-b border-slate-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between mb-12">
+            <div>
+              <h2 className="text-3xl font-bold text-slate-900 mb-2 tracking-tight">Latest Nutrition Insights</h2>
+              <p className="text-slate-600">Expert advice and actionable tips from Dietician Deepali.</p>
+            </div>
+            <Link 
+              href="/blogs"
+              className="mt-4 sm:mt-0 flex items-center space-x-2 text-emerald-600 font-semibold hover:text-emerald-700 transition"
+            >
+              <span>View All Articles</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          {recentBlogs.length > 0 ? (
+            <div className="grid gap-8 md:grid-cols-3">
+              {recentBlogs.map((blog) => (
+                <Link key={blog._id} href={`/blogs/${blog.slug}`} className="group flex flex-col bg-slate-50 rounded-2xl border border-slate-100 overflow-hidden relative top-0 hover:-top-1 transition-all duration-300">
+                  <div className="relative h-48 w-full bg-slate-200 overflow-hidden">
+                    {blog.images && blog.images.length > 0 ? (
+                      <img 
+                        src={blog.images[0]} 
+                        alt={blog.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div className="flex items-center justify-center h-full text-slate-400 font-medium">No Image</div>
+                    )}
+                  </div>
+                  <div className="p-6 flex-1 flex flex-col">
+                    <p className="text-xs font-medium text-emerald-600 mb-2">
+                      {new Date(blog.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                    </p>
+                    <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-2 mb-3">
+                      {blog.title}
+                    </h3>
+                    <div 
+                      className="text-sm text-slate-500 line-clamp-3 mb-4 flex-1"
+                      dangerouslySetInnerHTML={{ __html: blog.content.replace(/<[^>]+>/g, '').substring(0, 120) + "..." }}
+                    />
+                    <div className="flex items-center text-emerald-600 font-medium text-sm group-hover:text-emerald-700">
+                      Read more <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center text-slate-500 py-8 bg-slate-50 rounded-2xl border border-slate-100">
+              New insights coming soon. Stay tuned!
+            </div>
+          )}
         </div>
       </section>
 

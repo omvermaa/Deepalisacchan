@@ -1,4 +1,5 @@
 'use client';
+import { useCallback } from 'react';
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -8,22 +9,40 @@ export default function BmiCalculator() {
   const [formData, setFormData] = useState({
     age: '',
     gender: 'female',
-    height: '',
+    // height: '',
+    heightCm: '',
+    heightFt: '',
+    heightIn: '',
+    heightUnit: 'cm', // 'cm' or 'ft'
     weight: '',
   });
-  
+
+
+  const inputClass = "w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-slate-900 focus:border-transparent outline-none text-sm transition";
+
+  // Compute height in cm regardless of input unit
+  const getHeightInCm = useCallback(() => {
+    if (formData.heightUnit === 'cm') {
+      return formData.heightCm;
+    }
+    const ft = parseFloat(formData.heightFt) || 0;
+    const inches = parseFloat(formData.heightIn) || 0;
+    const totalInches = (ft * 12) + inches;
+    return totalInches > 0 ? Math.round(totalInches * 2.54) : '';
+  }, [formData.heightUnit, formData.heightCm, formData.heightFt, formData.heightIn]);
+
   const [result, setResult] = useState(null);
 
   const calculateBMI = (e) => {
     e.preventDefault();
-    const h = parseFloat(formData.height) / 100;
+    const h = parseFloat(formData.heightCm) / 100;
     const w = parseFloat(formData.weight);
     if (h > 0 && w > 0) {
       const bmi = w / (h * h);
       let category = '';
       let positives = [];
       let improvements = [];
-      
+
       if (bmi < 18.5) {
         category = 'Underweight';
         positives = ['Fast metabolism baseline'];
@@ -41,7 +60,7 @@ export default function BmiCalculator() {
         positives = ['Significant transformation potential'];
         improvements = ['Metabolic risk management', 'Professional dietary guidance recommended'];
       }
-      
+
       setResult({
         bmi: bmi.toFixed(1),
         category,
@@ -75,7 +94,7 @@ export default function BmiCalculator() {
                   className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-slate-900 focus:border-transparent outline-none transition text-sm"
                   placeholder="e.g. 28"
                   value={formData.age}
-                  onChange={(e) => setFormData({...formData, age: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, age: e.target.value })}
                 />
               </div>
               <div className="space-y-2">
@@ -83,7 +102,7 @@ export default function BmiCalculator() {
                 <select
                   className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-slate-900 focus:border-transparent outline-none transition text-sm bg-white"
                   value={formData.gender}
-                  onChange={(e) => setFormData({...formData, gender: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
                 >
                   <option value="female">Female</option>
                   <option value="male">Male</option>
@@ -92,7 +111,7 @@ export default function BmiCalculator() {
               </div>
             </div>
 
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               <label className="text-sm font-medium text-slate-700">Height (cm)</label>
               <input
                 type="number"
@@ -104,6 +123,74 @@ export default function BmiCalculator() {
                 value={formData.height}
                 onChange={(e) => setFormData({...formData, height: e.target.value})}
               />
+            </div> */}
+
+            {/* Height with unit toggle */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <label className="text-sm font-medium text-slate-700">Height</label>
+                <div className="flex bg-slate-100 rounded-lg p-0.5 border border-slate-200/60">
+                  <button
+                    type="button"
+                    onClick={() => setFormData({ ...formData, heightUnit: 'cm' })}
+                    className={`px-3 py-1 rounded-md text-xs font-semibold transition-all ${formData.heightUnit === 'cm'
+                      ? 'bg-slate-900 text-white shadow-sm'
+                      : 'text-slate-500 hover:text-slate-700'
+                      }`}
+                  >
+                    cm
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setFormData({ ...formData, heightUnit: 'ft' })}
+                    className={`px-3 py-1 rounded-md text-xs font-semibold transition-all ${formData.heightUnit === 'ft'
+                      ? 'bg-slate-900 text-white shadow-sm'
+                      : 'text-slate-500 hover:text-slate-700'
+                      }`}
+                  >
+                    ft / in
+                  </button>
+                </div>
+              </div>
+
+              {formData.heightUnit === 'cm' ? (
+                <input type="number" required min="50" max="300"
+                  className={inputClass}
+                  placeholder="e.g. 165"
+                  value={formData.heightCm} onChange={e => setFormData({ ...formData, heightCm: e.target.value })}
+                />
+              ) : (
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="relative">
+                    <input type="number" required min="1" max="8"
+                      className={inputClass}
+                      placeholder="Feet"
+                      value={formData.heightFt} onChange={e => setFormData({ ...formData, heightFt: e.target.value })}
+                    />
+                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 font-medium">ft</span>
+                  </div>
+                  <div className="relative">
+                    <input type="number" required min="0" max="11"
+                      className={inputClass}
+                      placeholder="Inches"
+                      value={formData.heightIn} onChange={e => setFormData({ ...formData, heightIn: e.target.value })}
+                    />
+                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 font-medium">in</span>
+                  </div>
+                </div>
+              )}
+
+              {/* Live conversion hint */}
+              {formData.heightUnit === 'ft' && (formData.heightFt || formData.heightIn) && (
+                <p className="text-[11px] text-slate-400 mt-1">
+                  ≈ {getHeightInCm()} cm
+                </p>
+              )}
+              {formData.heightUnit === 'cm' && formData.heightCm && (
+                <p className="text-[11px] text-slate-400 mt-1">
+                  ≈ {Math.floor(formData.heightCm / 2.54 / 12)} ft {Math.round(formData.heightCm / 2.54 % 12)} in
+                </p>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -116,7 +203,7 @@ export default function BmiCalculator() {
                 className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-slate-900 focus:border-transparent outline-none transition text-sm"
                 placeholder="e.g. 60"
                 value={formData.weight}
-                onChange={(e) => setFormData({...formData, weight: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
               />
             </div>
 
@@ -133,7 +220,7 @@ export default function BmiCalculator() {
           <div className="h-full">
             <AnimatePresence mode="wait">
               {!result ? (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
