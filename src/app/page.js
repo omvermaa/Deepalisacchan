@@ -32,7 +32,7 @@ export default async function Home() {
           <div className="max-w-3xl mx-auto text-center space-y-8">
             <div className="inline-flex items-center space-x-2 bg-slate-800/80 border border-slate-700/80 px-4 py-2 rounded-full text-slate-200 font-medium text-xs md:text-sm backdrop-blur-md shadow-xs">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>13+ Years of Clinical Expertise in Nutrition</span>
+              <span>M.Sc Food Nutrition & Dietetics • 12+ Years Clinical Experience</span>
             </div>
             
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
@@ -81,18 +81,18 @@ export default async function Home() {
                 
                 <div className="absolute bottom-6 left-6 right-6 text-white p-4 rounded-2xl bg-slate-900/70 backdrop-blur-md border border-white/10">
                   <p className="font-bold text-base">Dietician Deepali Sachan</p>
-                  <p className="text-xs text-slate-300">Clinical Nutritionist & Lifestyle Consultant</p>
+                  <p className="text-xs text-slate-300">M.Sc Food Nutrition & Dietetics • Clinical Nutritionist</p>
                 </div>
               </div>
 
               {/* Floating Badge */}
               <div className="absolute -top-6 -right-6 hidden sm:flex items-center space-x-3 bg-white p-4 rounded-2xl shadow-xl border border-slate-200/80">
                 <div className="w-12 h-12 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold text-lg">
-                  13+
+                  12+
                 </div>
                 <div>
                   <p className="font-bold text-slate-900 text-sm">Years Exp.</p>
-                  <p className="text-xs text-slate-500">Thousands Guided</p>
+                  <p className="text-xs text-slate-500">M.Sc Certified Expert</p>
                 </div>
               </div>
             </div>
@@ -101,7 +101,7 @@ export default async function Home() {
             <div className="md:col-span-7 space-y-6">
               <div className="inline-flex items-center space-x-2 bg-slate-100 border border-slate-200 px-3 py-1.5 rounded-full text-slate-800 text-xs font-semibold">
                 <Award className="w-4 h-4 text-slate-700" />
-                <span>Expert Guidance You Can Trust</span>
+                <span>M.Sc Food Nutrition & Dietetics • 12+ Years Experience</span>
               </div>
 
               <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
@@ -114,10 +114,11 @@ export default async function Home() {
 
               <div className="space-y-3 pt-2">
                 {[
-                  "Personalized diet plans adapted to your medical history & goals",
-                  "Sustainable lifestyle modifications without extreme deprivation",
-                  "Continuous follow-ups & regular progress tracking",
-                  "Expert support for PCOS, Diabetes, Weight Management & Immunity"
+                  "Personalized diet plans for Weight Loss & Weight Gain",
+                  "Therapeutic nutrition for Diabetes, PCOS & Thyroid Management",
+                  "Specialized care for Chronic Kidney Disease, Chronic Liver Disease & Cardiac Health",
+                  "Nutrition plans for Pregnancy, Lactating Mothers & Tube Feeding care",
+                  "Sustainable lifestyle modifications without extreme deprivation"
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start space-x-3">
                     <CheckCircle2 className="w-5 h-5 text-slate-800 flex-shrink-0 mt-0.5" />

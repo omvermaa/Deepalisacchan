@@ -3,7 +3,7 @@ import { Award, Users, BookOpen, Heart } from 'lucide-react';
 
 export const metadata = {
   title: 'About | Dietician Deepali Sachan',
-  description: 'Learn about Dietician Deepali Sachan, her philosophy, and her 13+ years of experience transforming lives through customized nutrition.',
+  description: 'Learn about Dietician Deepali Sachan (M.Sc Food Nutrition & Dietetics), her philosophy, and her 12+ years of experience transforming lives through customized nutrition.',
 };
 
 export default function About() {
@@ -12,9 +12,12 @@ export default function About() {
       {/* Header */}
       <div className="bg-slate-100/70 py-24 border-b border-slate-200/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">About Dietician Deepali</h1>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Empowering individuals to achieve their health goals through sustainable, science-based nutrition for over a decade.
+          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">About Dietician Deepali Sachan</h1>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium">
+            M.Sc Food Nutrition & Dietetics • Clinical Nutrition & Dietetics Expert
+          </p>
+          <p className="text-base text-slate-500 max-w-2xl mx-auto mt-2">
+            Empowering individuals to achieve sustainable health goals for over 12+ years.
           </p>
         </div>
       </div>
@@ -33,24 +36,65 @@ export default function About() {
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-80" />
               <div className="absolute bottom-6 left-6 right-6 text-white p-4 rounded-2xl bg-slate-900/75 backdrop-blur-md border border-white/10">
                 <p className="font-bold text-base">Dietician Deepali Sachan</p>
-                <p className="text-xs text-slate-300">Senior Clinical Dietitian</p>
+                <p className="text-xs text-slate-300">M.Sc Food Nutrition & Dietetics</p>
               </div>
             </div>
             <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl border border-slate-200/80">
-              <p className="text-4xl font-black text-slate-900 mb-1">13+</p>
+              <p className="text-4xl font-black text-slate-900 mb-1">12+</p>
               <p className="font-semibold text-slate-600 text-sm">Years of Experience</p>
             </div>
           </div>
           
           <div className="space-y-8">
-            <div>
-              <h2 className="text-3xl font-bold text-slate-900 mb-6 tracking-tight">My Journey & Philosophy</h2>
-              <p className="text-slate-600 mb-4 leading-relaxed">
-                With over 13 years of clinical experience, I've had the privilege of working with thousands of individuals with unique health challenges. I believe that nutrition is not about starvation or extreme diets; it's about finding long-term, sustainable ways to nourish your body.
-              </p>
-              <p className="text-slate-600 leading-relaxed">
-                Whether you're struggling with weight loss, PCOS, diabetes, or digestive issues, my approach focuses on integrating healthy eating into your lifestyle seamlessly—without giving up the foods you love.
-              </p>
+            <div className="space-y-6">
+              <div>
+                <span className="inline-flex items-center space-x-2 bg-emerald-50 text-emerald-800 border border-emerald-200/80 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+                  <Award className="w-4 h-4 text-emerald-600" />
+                  <span>M.Sc Food Nutrition & Dietetics • 12+ Yrs Experience</span>
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                  Qualifications & Clinical Philosophy
+                </h2>
+              </div>
+
+              {/* Philosophy Quote Callout */}
+              <div className="bg-slate-900 text-white p-6 rounded-2xl relative overflow-hidden shadow-lg border border-slate-800">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
+                <p className="text-slate-200 text-base md:text-lg italic font-medium leading-relaxed">
+                  "Real nutrition is not about starvation or unsustainable fad diets—it is about establishing long-term, science-backed habits tailored to your unique medical background and daily routine."
+                </p>
+                <p className="text-emerald-400 font-bold text-xs uppercase tracking-widest mt-4">
+                  — Dietician Deepali Sachan
+                </p>
+              </div>
+
+              {/* Specialties Grid / Pills */}
+              <div>
+                <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3 text-slate-500">
+                  Therapeutic & Clinical Specialties
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "Weight Loss & Gain",
+                    "Diabetes Care",
+                    "Chronic Kidney Disease",
+                    "Chronic Liver Disease",
+                    "Cardiac Health",
+                    "PCOS / PCOD",
+                    "Thyroid Management",
+                    "Pregnancy Nutrition",
+                    "Lactating Mother Care",
+                    "Tube Feeding & ICU Nutrition"
+                  ].map((specialty, i) => (
+                    <span 
+                      key={i} 
+                      className="bg-slate-100 hover:bg-slate-900 hover:text-white transition-all duration-200 text-slate-800 text-xs font-semibold px-3.5 py-2 rounded-xl border border-slate-200/80 shadow-2xs"
+                    >
+                      {specialty}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
             
             <div className="grid sm:grid-cols-2 gap-6 pt-6 border-t border-slate-200/80">

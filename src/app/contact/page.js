@@ -1,5 +1,5 @@
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
-
+import ContactForm from '@/components/ContactForm';
 export const metadata = {
   title: 'Contact | Dietician Deepali Sachan',
   description: 'Get in touch with Dietician Deepali Sachan for nutrition inquiries.',
@@ -42,7 +42,9 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="text-base font-bold text-slate-900 mb-1">Phone</h4>
-                    <p className="text-slate-600 text-sm">+91 98765 43210</p>
+                    <a href="tel:7607738761" className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium">
+                      +91 76077 38761
+                    </a>
                   </div>
                 </div>
 
@@ -52,7 +54,9 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="text-base font-bold text-slate-900 mb-1">Email</h4>
-                    <p className="text-slate-600 text-sm">contact@deepalisachan.com</p>
+                    <a href="mailto:deepalisachan32@gmail.com" className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium">
+                      deepalisachan32@gmail.com
+                    </a>
                   </div>
                 </div>
 
@@ -77,38 +81,7 @@ export default function Contact() {
 
           <div className="bg-white rounded-3xl shadow-xl shadow-slate-900/5 border border-slate-200/80 p-8 md:p-12">
             <h3 className="text-2xl font-bold text-slate-900 mb-8 tracking-tight">Send a Message</h3>
-            <form className="space-y-6">
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-700">Full Name</label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-slate-900 focus:border-transparent outline-none transition text-sm"
-                  placeholder="John Doe"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-700">Email Address</label>
-                <input
-                  type="email"
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-slate-900 focus:border-transparent outline-none transition text-sm"
-                  placeholder="john@example.com"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-700">Message</label>
-                <textarea
-                  rows={5}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-slate-900 focus:border-transparent outline-none transition resize-none text-sm"
-                  placeholder="How can we help you?"
-                ></textarea>
-              </div>
-              <button
-                type="button"
-                className="w-full bg-slate-900 text-white font-semibold py-4 rounded-xl hover:bg-slate-800 transition active:scale-[0.99]"
-              >
-                Send Message
-              </button>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </div>

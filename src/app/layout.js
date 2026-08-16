@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Dietician Deepali Sachan - Portfolio & Consultation",
-  description: "Personalized diet plans and expert nutrition from Dietician Deepali Sachan with 13+ years of experience.",
+  description: "Personalized diet plans and expert nutrition from Dietician Deepali Sachan (M.Sc Food Nutrition & Dietetics) with 12+ years of experience.",
 };
 
 export default function RootLayout({ children }) {
