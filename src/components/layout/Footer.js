@@ -9,6 +9,7 @@ export default function Footer() {
         </div>
         <div className="flex space-x-8 text-sm">
           <Link href="/about" className="text-slate-400 hover:text-white transition-colors">About</Link>
+          <Link href="/blogs" className="text-slate-400 hover:text-white transition-colors">Blog</Link>
           <Link href="/contact" className="text-slate-400 hover:text-white transition-colors">Contact</Link>
           <Link href="/consultation" className="text-slate-400 hover:text-white transition-colors">Book Consultation</Link>
         </div>
