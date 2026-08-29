@@ -63,7 +63,7 @@ export default function ConsultationForm() {
       const heightInCm = getHeightInCm();
 
       const options = {
-        key: process.env.NEXT_RAZORPAY_KEY_ID,
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         amount: data.amount,
         currency: data.currency,
         name: "Dietician Deepali Sachan",

@@ -3,11 +3,11 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
   try {
-    const keyId = process.env.NEXT_RAZORPAY_KEY_ID;
+    const keyId = process.env.RAZORPAY_KEY_ID;
     const keySecret = process.env.RAZORPAY_KEY_SECRET;
 
     if (!keyId || !keySecret) {
-      console.error("Razorpay Error: Missing NEXT_RAZORPAY_KEY_ID or RAZORPAY_KEY_SECRET in environment variables.");
+      console.error("Razorpay Error: Missing RAZORPAY_KEY_ID or RAZORPAY_KEY_SECRET in environment variables.");
       return NextResponse.json({ error: "Payment service is not configured. Please contact support." }, { status: 500 });
     }
 
