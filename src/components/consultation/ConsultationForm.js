@@ -63,7 +63,7 @@ export default function ConsultationForm() {
       const heightInCm = getHeightInCm();
 
       const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+        key: process.env.NEXT_RAZORPAY_KEY_ID,
         amount: data.amount,
         currency: data.currency,
         name: "Dietician Deepali Sachan",
@@ -187,7 +187,7 @@ export default function ConsultationForm() {
             <div
               key={item}
               className={`h-2 rounded-full transition-all duration-300 ${item === step ? 'w-8 bg-slate-900' :
-                  item < step ? 'w-4 bg-slate-400' : 'w-4 bg-slate-200'
+                item < step ? 'w-4 bg-slate-400' : 'w-4 bg-slate-200'
                 }`}
             />
           ))}
@@ -238,16 +238,16 @@ export default function ConsultationForm() {
                     <Phone className="w-3.5 h-3.5 text-slate-400" />Phone Number
                   </label>
                   <input type="tel"
-                  inputMode="numeric"
-                  pattern="[0-9]{10}"
-                  maxLength="10"
-                  onInput={(e) => {
-                    e.target.value = e.target.value.replace(/[^0-9]/g, '');
-                    setFormData({ ...formData, phone: e.target.value });
-                  }}
-                  className={inputClass}
-                  placeholder="e.g. +91 98765 43210"
-                  value={formData.phone}
+                    inputMode="numeric"
+                    pattern="[0-9]{10}"
+                    maxLength="10"
+                    onInput={(e) => {
+                      e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                      setFormData({ ...formData, phone: e.target.value });
+                    }}
+                    className={inputClass}
+                    placeholder="e.g. +91 98765 43210"
+                    value={formData.phone}
                   />
                 </div>
 
@@ -294,8 +294,8 @@ export default function ConsultationForm() {
                         type="button"
                         onClick={() => setFormData({ ...formData, heightUnit: 'cm' })}
                         className={`px-3 py-1 rounded-md text-xs font-semibold transition-all ${formData.heightUnit === 'cm'
-                            ? 'bg-slate-900 text-white shadow-sm'
-                            : 'text-slate-500 hover:text-slate-700'
+                          ? 'bg-slate-900 text-white shadow-sm'
+                          : 'text-slate-500 hover:text-slate-700'
                           }`}
                       >
                         cm
@@ -304,8 +304,8 @@ export default function ConsultationForm() {
                         type="button"
                         onClick={() => setFormData({ ...formData, heightUnit: 'ft' })}
                         className={`px-3 py-1 rounded-md text-xs font-semibold transition-all ${formData.heightUnit === 'ft'
-                            ? 'bg-slate-900 text-white shadow-sm'
-                            : 'text-slate-500 hover:text-slate-700'
+                          ? 'bg-slate-900 text-white shadow-sm'
+                          : 'text-slate-500 hover:text-slate-700'
                           }`}
                       >
                         ft / in
@@ -389,8 +389,8 @@ export default function ConsultationForm() {
                       key={goal.id}
                       onClick={() => { setFormData({ ...formData, goal: goal.id }); nextStep(); }}
                       className={`text-left p-5 rounded-2xl border transition-all group ${formData.goal === goal.id
-                          ? 'border-slate-900 bg-slate-100/80 shadow-xs'
-                          : 'border-slate-200/80 bg-white hover:bg-slate-50'
+                        ? 'border-slate-900 bg-slate-100/80 shadow-xs'
+                        : 'border-slate-200/80 bg-white hover:bg-slate-50'
                         }`}
                     >
                       <goal.icon className={`w-6 h-6 mb-3 ${formData.goal === goal.id ? 'text-slate-900' : 'text-slate-400 group-hover:text-slate-700'}`} />
@@ -422,8 +422,8 @@ export default function ConsultationForm() {
                       key={diet.id}
                       onClick={() => { setFormData({ ...formData, diet: diet.id }); nextStep(); }}
                       className={`text-left p-5 rounded-2xl border transition-all group ${formData.diet === diet.id
-                          ? 'border-slate-900 bg-slate-100/80 shadow-xs'
-                          : 'border-slate-200/80 bg-white hover:bg-slate-50'
+                        ? 'border-slate-900 bg-slate-100/80 shadow-xs'
+                        : 'border-slate-200/80 bg-white hover:bg-slate-50'
                         }`}
                     >
                       <diet.icon className={`w-6 h-6 mb-3 ${formData.diet === diet.id ? 'text-slate-900' : 'text-slate-400 group-hover:text-slate-700'}`} />

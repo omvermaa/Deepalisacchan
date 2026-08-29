@@ -156,34 +156,153 @@ export default async function Home() {
             <p className="text-slate-600">See what clients share about their sustainable transformation journey.</p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { name: "Aman Sharma", text: "Deepali ma'am's diet plan was genuinely life-changing. It didn't feel like a strict diet, rather a sustainable shift in my lifestyle. Highly recommended!" },
-              { name: "Priya Verma", text: "Managed my PCOS effectively within 3 months of following her custom guidance. Super pragmatic and easy to integrate into daily routine." },
-              { name: "Rajesh Gupta", text: "Lost 12 kgs in 4 months without sacrificing basic comfort foods. Science-backed advice with great regular check-ins." }
-            ].map((item, idx) => (
-              <div key={idx} className="bg-white p-8 rounded-2xl shadow-xs border border-slate-200/80 relative flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center space-x-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-slate-800 text-slate-800" />
-                    ))}
-                  </div>
-                  <p className="text-slate-700 mb-6 text-sm leading-relaxed">
-                    "{item.text}"
-                  </p>
-                </div>
-                <div className="flex items-center space-x-3 border-t border-slate-100 pt-4">
-                  <div className="w-9 h-9 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-800 font-bold text-xs">
-                    {item.name.charAt(0)}
-                  </div>
+          <div className="relative flex overflow-hidden group py-4">
+            {/* The absolute overlay gradients for smooth side fading */}
+            <div className="absolute left-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none" />
+            
+            <div className="flex animate-[marquee_50s_linear_infinite] group-hover:[animation-play-state:paused] space-x-6 sm:space-x-8 px-3 sm:px-4 min-w-max">
+              {[
+                { 
+                  name: "Shweta Awasthi", 
+                  text: "So supportive and provided a positive outlook, made healthy eating easy and delicious. Thankyou so much.... Highly recommended 😇",
+                  image: "/images/reviews/shweta_a.jpg"
+                },
+                { 
+                  name: "Ranjana Tripathi", 
+                  text: "Thank you for helping me understand how to eat for my body and for giving me a new perspective on health. I feel more in control of my diet and so much better because of you",
+                  image: "/images/reviews/ranjana.jpg"
+                },
+                { 
+                  name: "Shweta Vishwakarma", 
+                  text: "One of the best dietician in kanpur The dietician provided a well-structured and personalized diet plan that matched my lifestyle and preferences. Their guidance was clear, supportive, and scientifically accurate. I truly appreciate the consistent follow-up and the positive changes I noticed in my health.Thanku so much Dt. Deepali mam ❤️🫶💯",
+                  image: "/images/reviews/shweta_v.jpg"
+                },
+                { 
+                  name: "Anshuman Tiwari", 
+                  text: "Flexible diet plan easy to follow , it helped me lose 17 kg in 3 month. 😊",
+                  image: "/images/reviews/anshuman.jpg"
+                },
+                { 
+                  name: "Anurag Savita", 
+                  text: "Maidam bahut achhi hai bahut pyar se bat karti hai",
+                  image: null
+                },
+                { 
+                  name: "Arham mirza", 
+                  text: "loose body weight 100 to 90 in 2 months \n nice effective body diet chart",
+                  image: "/images/reviews/arham.jpg"
+                }
+              ].map((item, idx) => (
+                <div key={`marquee-1-${idx}`} className="bg-white p-8 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-slate-200/60 relative flex flex-col justify-between w-[320px] sm:w-[380px] shrink-0 whitespace-normal transition-transform duration-300 hover:-translate-y-1">
                   <div>
-                    <p className="font-bold text-slate-900 text-sm">{item.name}</p>
-                    <p className="text-xs text-slate-500">Verified Client</p>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center space-x-1">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                        ))}
+                      </div>
+                      <span className="text-xs font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded-md">Google</span>
+                    </div>
+                    <p className="text-slate-700 mb-6 text-[15px] leading-relaxed italic">
+                      "{item.text}"
+                    </p>
+                  </div>
+                  <div className="flex items-center space-x-4 border-t border-slate-100 pt-5">
+                    <div className="relative w-11 h-11 rounded-full overflow-hidden border border-slate-200 shadow-sm flex-shrink-0 bg-emerald-50">
+                      {item.image ? (
+                        <Image 
+                          src={item.image} 
+                          alt={item.name} 
+                          fill 
+                          className="object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-emerald-800 font-bold text-sm">
+                          {item.name.charAt(0)}
+                        </div>
+                      )}
+                    </div>
+                    <div>
+                      <p className="font-bold text-slate-900 text-sm leading-tight">{item.name}</p>
+                      <p className="text-[11px] font-medium tracking-wide text-slate-500 uppercase mt-0.5">Verified Review</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* Seamless duplicate for continuous looping */}
+            <div className="flex animate-[marquee_50s_linear_infinite] group-hover:[animation-play-state:paused] space-x-6 sm:space-x-8 px-3 sm:px-4 min-w-max" aria-hidden="true">
+              {[
+                { 
+                  name: "Shweta Awasthi", 
+                  text: "So supportive and provided a positive outlook, made healthy eating easy and delicious. Thankyou so much.... Highly recommended 😇",
+                  image: "/images/reviews/shweta_a.jpg"
+                },
+                { 
+                  name: "Ranjana Tripathi", 
+                  text: "Thank you for helping me understand how to eat for my body and for giving me a new perspective on health. I feel more in control of my diet and so much better because of you",
+                  image: "/images/reviews/ranjana.jpg"
+                },
+                { 
+                  name: "Shweta Vishwakarma", 
+                  text: "One of the best dietician in kanpur The dietician provided a well-structured and personalized diet plan that matched my lifestyle and preferences. Their guidance was clear, supportive, and scientifically accurate. I truly appreciate the consistent follow-up and the positive changes I noticed in my health.Thanku so much Dt. Deepali mam ❤️🫶💯",
+                  image: "/images/reviews/shweta_v.jpg"
+                },
+                { 
+                  name: "Anshuman Tiwari", 
+                  text: "Flexible diet plan easy to follow , it helped me lose 17 kg in 3 month. 😊",
+                  image: "/images/reviews/anshuman.jpg"
+                },
+                { 
+                  name: "Anurag Savita", 
+                  text: "Maidam bahut achhi hai bahut pyar se bat karti hai",
+                  image: null
+                },
+                { 
+                  name: "Arham mirza", 
+                  text: "loose body weight 100 to 90 in 2 months \n nice effective body diet chart",
+                  image: "/images/reviews/arham.jpg"
+                }
+              ].map((item, idx) => (
+                <div key={`marquee-2-${idx}`} className="bg-white p-8 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-slate-200/60 relative flex flex-col justify-between w-[320px] sm:w-[380px] shrink-0 whitespace-normal transition-transform duration-300 hover:-translate-y-1">
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center space-x-1">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                        ))}
+                      </div>
+                      <span className="text-xs font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded-md">Google</span>
+                    </div>
+                    <p className="text-slate-700 mb-6 text-[15px] leading-relaxed italic">
+                      "{item.text}"
+                    </p>
+                  </div>
+                  <div className="flex items-center space-x-4 border-t border-slate-100 pt-5">
+                    <div className="relative w-11 h-11 rounded-full overflow-hidden border border-slate-200 shadow-sm flex-shrink-0 bg-emerald-50">
+                      {item.image ? (
+                        <Image 
+                          src={item.image} 
+                          alt={item.name} 
+                          fill 
+                          className="object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-emerald-800 font-bold text-sm">
+                          {item.name.charAt(0)}
+                        </div>
+                      )}
+                    </div>
+                    <div>
+                      <p className="font-bold text-slate-900 text-sm leading-tight">{item.name}</p>
+                      <p className="text-[11px] font-medium tracking-wide text-slate-500 uppercase mt-0.5">Verified Review</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
