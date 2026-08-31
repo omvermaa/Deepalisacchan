@@ -24,6 +24,7 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
+      data-scroll-behavior="smooth"
     >
       <body className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans antialiased selection:bg-green-100 selection:text-green-900">
         <Script id="razorpay-checkout-js" src="https://checkout.razorpay.com/v1/checkout.js" />

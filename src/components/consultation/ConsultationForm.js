@@ -4,8 +4,10 @@ import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ChevronLeft, UploadCloud, Lock, CheckCircle2, FileText, Activity, Heart, Carrot, User, Mail, Phone } from 'lucide-react';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 export default function ConsultationForm() {
+  const router = useRouter();
   const [step, setStep] = useState(1);
   const [direction, setDirection] = useState(1);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -96,7 +98,7 @@ export default function ConsultationForm() {
             });
 
             if (verifyRes.status === 200) {
-              alert("Payment verified and request submitted successfully! We will get in touch shortly.");
+              router.push('/payment-success');
             }
           } catch (err) {
             console.error(err);
