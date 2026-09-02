@@ -192,6 +192,11 @@ export default async function Home() {
                   name: "Arham mirza", 
                   text: "loose body weight 100 to 90 in 2 months \n nice effective body diet chart",
                   image: "/images/reviews/arham.jpg"
+                },
+                {
+                  name: "Aman Verma",
+                  text: "The Diet provided has helped me lose 10 kg weight in 4 months time and I love the new me, it was all possible because of Deepali ma'am, She adjusts your diet according to your needs and demands and not at all those fansy diets you see on Instagram. Her diet is easy to follow and gives results . I am so glad to see the new slim me , Thankyou Again",
+                  image: null
                 }
               ].map((item, idx) => (
                 <div key={`marquee-1-${idx}`} className="bg-white p-8 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-slate-200/60 relative flex flex-col justify-between w-[320px] sm:w-[380px] shrink-0 whitespace-normal transition-transform duration-300 hover:-translate-y-1">
@@ -264,6 +269,11 @@ export default async function Home() {
                   name: "Arham mirza", 
                   text: "loose body weight 100 to 90 in 2 months \n nice effective body diet chart",
                   image: "/images/reviews/arham.jpg"
+                },
+                {
+                  name: "Aman Verma",
+                  text: "The Diet provided has helped me lose 10 kg weight in 4 months time and I love the new me, it was all possible because of Deepali ma'am, She adjusts your diet according to your needs and demands and not at all those fansy diets you see on Instagram. Her diet is easy to follow and gives results . I am so glad to see the new slim me , Thankyou Again",
+                  image: null
                 }
               ].map((item, idx) => (
                 <div key={`marquee-2-${idx}`} className="bg-white p-8 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-slate-200/60 relative flex flex-col justify-between w-[320px] sm:w-[380px] shrink-0 whitespace-normal transition-transform duration-300 hover:-translate-y-1">

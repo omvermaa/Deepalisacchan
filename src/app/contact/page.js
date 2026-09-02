@@ -23,7 +23,7 @@ export default function Contact() {
             <div>
               <h2 className="text-3xl font-bold text-slate-900 mb-8 tracking-tight">Get In Touch</h2>
               <div className="space-y-6">
-                <div className="flex items-start space-x-4">
+                {/* <div className="flex items-start space-x-4">
                   <div className="bg-slate-100 p-3 rounded-xl text-slate-700 border border-slate-200/60 flex-shrink-0">
                     <MapPin className="w-5 h-5" />
                   </div>
@@ -34,7 +34,7 @@ export default function Contact() {
                       New Delhi, India 110001
                     </p>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="flex items-start space-x-4">
                   <div className="bg-slate-100 p-3 rounded-xl text-slate-700 border border-slate-200/60 flex-shrink-0">
@@ -72,11 +72,11 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="bg-slate-100 rounded-3xl w-full h-[300px] md:h-full relative overflow-hidden border border-slate-200/80">
+            {/* <div className="bg-slate-100 rounded-3xl w-full h-[300px] md:h-full relative overflow-hidden border border-slate-200/80">
               <div className="absolute inset-0 flex items-center justify-center text-slate-400 font-medium text-sm">
                 Google Maps Embed
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="bg-white rounded-3xl shadow-xl shadow-slate-900/5 border border-slate-200/80 p-8 md:p-12">

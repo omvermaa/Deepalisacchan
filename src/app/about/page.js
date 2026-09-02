@@ -103,7 +103,7 @@ export default function About() {
                   <Award className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-900 text-base">Certified Expert</h4>
+                  <h4 className="font-bold text-slate-900 text-base">Expert</h4>
                   <p className="text-xs text-slate-500 mt-1">Recognized dietary guidelines</p>
                 </div>
               </div>
