@@ -63,7 +63,7 @@
 
 1. **Create Order API (`/api/razorpay/create-order`):**
    - Initialize Razorpay instance with `RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET`.
-   - Create an order for the consultation fee (e.g., INR 1500) and return the `order_id` to the frontend.
+   - Create an order for the consultation fee (e.g., INR 1) and return the `order_id` to the frontend.
 
 ### B. Payment Verification & Email Service
 

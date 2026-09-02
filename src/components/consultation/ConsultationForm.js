@@ -59,7 +59,7 @@ export default function ConsultationForm() {
 
     try {
       const { data } = await axios.post('/api/razorpay/create-order', {
-        amount: 1500
+        amount: 1
       });
 
       const heightInCm = getHeightInCm();
