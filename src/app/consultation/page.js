@@ -79,13 +79,13 @@ export default function ConsultationPage() {
               </ul>
             </div>
 
-            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200/80">
+            {/* <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200/80">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-slate-600 text-sm font-medium">Consultation Fee</p>
                 <p className="text-2xl font-extrabold text-slate-900">₹1,500</p>
               </div>
               <p className="text-xs text-slate-400">Secure payment powered by Razorpay</p>
-            </div>
+            </div> */}
           </div>
 
           <div className="w-full lg:w-2/3 order-1 lg:order-2">

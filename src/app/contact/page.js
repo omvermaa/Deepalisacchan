@@ -1,5 +1,6 @@
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
+import PhoneConsultationForm from '@/components/PhoneConsultationForm';
 export const metadata = {
   title: 'Contact | Dietician Deepali Sachan',
   description: 'Get in touch with Dietician Deepali Sachan for nutrition inquiries.',
@@ -41,8 +42,9 @@ export default function Contact() {
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-base font-bold text-slate-900 mb-1">Phone</h4>
-                    <a href="tel:7607738761" className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium">
+                    <h4 className="text-base font-bold text-slate-900 mb-1">Phone Consultation (Solving Queries)</h4>
+                    <p className="text-slate-600 text-sm font-medium mb-1">Rs. 200/-</p>
+                    <a href="tel:7607738761" className="text-emerald-600 hover:text-emerald-900 transition-colors text-sm font-medium">
                       +91 76077 38761
                     </a>
                   </div>
@@ -79,9 +81,17 @@ export default function Contact() {
             </div> */}
           </div>
 
-          <div className="bg-white rounded-3xl shadow-xl shadow-slate-900/5 border border-slate-200/80 p-8 md:p-12">
-            <h3 className="text-2xl font-bold text-slate-900 mb-8 tracking-tight">Send a Message</h3>
-            <ContactForm />
+          <div className="space-y-8">
+            <div className="bg-white rounded-3xl shadow-xl shadow-slate-900/5 border border-slate-200/80 p-8 md:p-12">
+              <h3 className="text-2xl font-bold text-slate-900 mb-2 tracking-tight">Request a Callback</h3>
+              <p className="text-slate-600 mb-8 text-sm">Pay ₹200 for a priority callback to resolve your queries directly with the dietician.</p>
+              <PhoneConsultationForm />
+            </div>
+{/* 
+            <div className="bg-white rounded-3xl shadow-xl shadow-slate-900/5 border border-slate-200/80 p-8 md:p-12">
+              <h3 className="text-2xl font-bold text-slate-900 mb-8 tracking-tight">General Enquiry</h3>
+              <ContactForm />
+            </div> */}
           </div>
         </div>
       </div>

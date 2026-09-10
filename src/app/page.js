@@ -4,6 +4,7 @@ import BmiCalculator from '@/components/calculator/BmiCalculator';
 import { Star, ArrowRight, ShieldCheck, Award, HeartHandshake, CheckCircle2 } from 'lucide-react';
 import dbConnect from '@/lib/mongodb';
 import Blog from '@/models/Blog';
+import ConsultationPopup from '@/components/ConsultationPopup';
 
 export const dynamic = 'force-dynamic';
 
@@ -403,6 +404,8 @@ export default async function Home() {
           </Link>
         </div>
       </section>
+
+      <ConsultationPopup />
     </div>
   );
 }

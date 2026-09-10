@@ -26,6 +26,7 @@ export default function ConsultationForm() {
     goal: '',
     diet: '',
     medicalHistory: '',
+    planType: 'diet_chart',
     file: null,
   });
 
@@ -57,9 +58,11 @@ export default function ConsultationForm() {
   const initPayment = async () => {
     setIsProcessing(true);
 
+    const amount = formData.planType === 'monthly_plan' ? 1800 : 500;
+    
     try {
       const { data } = await axios.post('/api/razorpay/create-order', {
-        amount: 1
+        amount: amount
       });
 
       const heightInCm = getHeightInCm();
@@ -69,7 +72,7 @@ export default function ConsultationForm() {
         amount: data.amount,
         currency: data.currency,
         name: "Dietician Deepali Sachan",
-        description: "Priority Diet Consultation",
+        description: formData.planType === 'monthly_plan' ? "Personalized Diet Plan (Monthly)" : "Personalized Diet Chart",
         order_id: data.id,
         handler: async function (response) {
           try {
@@ -88,6 +91,7 @@ export default function ConsultationForm() {
             vFormData.append('goal', formData.goal);
             vFormData.append('diet', formData.diet);
             vFormData.append('medicalHistory', formData.medicalHistory);
+            vFormData.append('planType', formData.planType);
 
             if (formData.file) {
               vFormData.append('file', formData.file);
@@ -486,16 +490,47 @@ export default function ConsultationForm() {
 
             {/* STEP 6: Payment Lock Screen */}
             {step === 6 && (
-              <div className="h-full flex flex-col items-center justify-center text-center space-y-6 py-6">
-                <div className="w-20 h-20 bg-slate-900 rounded-full flex items-center justify-center text-white shadow-xl shadow-slate-900/20">
-                  <Lock className="w-8 h-8" />
+              <div className="h-full flex flex-col items-center justify-center text-center space-y-5 py-2">
+                <div className="w-16 h-16 bg-slate-900 rounded-full flex items-center justify-center text-white shadow-lg shadow-slate-900/20 mb-2">
+                  <Lock className="w-7 h-7" />
                 </div>
 
                 <div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-2 tracking-tight">Your Profile is Ready</h3>
-                  <p className="text-slate-600 max-w-sm mx-auto text-sm leading-relaxed">
-                    Your details have been saved. Proceed to pay the consultation fee of <span className="font-bold text-slate-900">₹1,500</span> to send your dossier directly to Dietician Deepali Sachan.
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2 tracking-tight">Select Your Plan</h3>
+                  <p className="text-slate-600 max-w-sm mx-auto text-sm leading-relaxed mb-4">
+                    Your details have been saved. Choose a plan to send your dossier directly to Dietician Deepali Sachan.
                   </p>
+                </div>
+                
+                <div className="grid grid-cols-1 gap-3 w-full max-w-sm">
+                  <button
+                    onClick={() => setFormData({ ...formData, planType: 'diet_chart' })}
+                    className={`text-left p-4 rounded-xl border-2 transition-all ${
+                      formData.planType === 'diet_chart' 
+                        ? 'border-emerald-600 bg-emerald-50 shadow-sm' 
+                        : 'border-slate-200 bg-white hover:border-slate-300'
+                    }`}
+                  >
+                    <div className="flex justify-between items-center mb-1">
+                      <h4 className="font-bold text-slate-900">Personalized Diet Chart</h4>
+                      <span className="font-bold text-emerald-700">₹500</span>
+                    </div>
+                  </button>
+
+                  <button
+                    onClick={() => setFormData({ ...formData, planType: 'monthly_plan' })}
+                    className={`text-left p-4 rounded-xl border-2 transition-all ${
+                      formData.planType === 'monthly_plan' 
+                        ? 'border-emerald-600 bg-emerald-50 shadow-sm' 
+                        : 'border-slate-200 bg-white hover:border-slate-300'
+                    }`}
+                  >
+                    <div className="flex justify-between items-center mb-1">
+                      <h4 className="font-bold text-slate-900">Personalized Diet Plan</h4>
+                      <span className="font-bold text-emerald-700">₹1,800</span>
+                    </div>
+                    <p className="text-xs text-slate-500 font-medium">(Monthly Base)</p>
+                  </button>
                 </div>
 
                 <div className="w-full max-w-sm pt-4">
@@ -504,7 +539,7 @@ export default function ConsultationForm() {
                     disabled={isProcessing}
                     className="w-full bg-slate-900 text-white font-bold text-base py-4 rounded-xl hover:bg-slate-800 transition shadow-lg flex justify-center items-center disabled:opacity-70 active:scale-[0.99]"
                   >
-                    {isProcessing ? 'Processing...' : 'Pay ₹1,500 via Razorpay'}
+                    {isProcessing ? 'Processing...' : `Pay ₹${formData.planType === 'monthly_plan' ? '1,800' : '500'} via Razorpay`}
                   </button>
                   <button onClick={prevStep} className="text-slate-500 hover:text-slate-900 text-xs font-medium mt-4 transition">
                     Go back and edit details
