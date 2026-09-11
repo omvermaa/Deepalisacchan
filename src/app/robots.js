@@ -5,6 +5,6 @@ export default function robots() {
       allow: '/',
       disallow: '/api/admin/',
     },
-    sitemap: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.dieticiandeepalisachan.com'}/sitemap.xml`,
+    sitemap: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deepalisachan.com'}/sitemap.xml`,
   }
 }

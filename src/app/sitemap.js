@@ -2,7 +2,7 @@ import dbConnect from "@/lib/mongodb";
 import Blog from "@/models/Blog";
 
 export default async function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.dieticiandeepalisachan.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deepalisachan.com';
 
   // Get all blogs to add to sitemap
   await dbConnect();
