@@ -1,30 +1,42 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { CheckCircle, ArrowRight } from 'lucide-react';
+import { useEffect, useState, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { CheckCircle, ArrowRight, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export default function PaymentSuccess() {
+function SuccessContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [countdown, setCountdown] = useState(7);
+  
+  const type = searchParams.get('type');
+  const isPhoneConsultation = type === 'phone';
 
   useEffect(() => {
-    if (countdown > 0) {
-      const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
-      return () => clearTimeout(timer);
-    } else {
-      router.push('/');
+    // Only auto-redirect if it's NOT a phone consultation that requires scheduling
+    if (!isPhoneConsultation) {
+      if (countdown > 0) {
+        const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+        return () => clearTimeout(timer);
+      } else {
+        router.push('/');
+      }
     }
-  }, [countdown, router]);
+  }, [countdown, router, isPhoneConsultation]);
+
+  const handleCalendlyRedirect = () => {
+    // Replace this with the actual Calendly link you want to redirect to!
+    window.open('https://calendly.com/deepalisachan32/phone-consultation', '_blank');
+  };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center p-4 relative z-10">
+    <div className="min-h-[80vh] flex items-center justify-center p-4 relative z-10 w-full max-w-xl mx-auto">
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="bg-white rounded-3xl shadow-2xl shadow-slate-900/5 p-8 md:p-12 max-w-xl w-full text-center border border-slate-200/80"
+        className="bg-white rounded-3xl shadow-2xl shadow-slate-900/5 p-8 md:p-12 w-full text-center border border-slate-200/80"
       >
         <motion.div
           initial={{ scale: 0 }}
@@ -38,26 +50,59 @@ export default function PaymentSuccess() {
         <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-4 hidden-safari-fix">
           Payment Successful!
         </h1>
-        <p className="text-slate-600 mb-8 leading-relaxed md:text-lg">
-          Thank you for choosing Dietician Deepali Sachan. Your consultation request has been securely submitted and your slot is booked. We will review your dossier and get in touch with you shortly.
-        </p>
+        
+        {isPhoneConsultation ? (
+          <div>
+             <p className="text-slate-600 mb-8 leading-relaxed md:text-lg">
+               Thank you for booking a priority Phone Consultation. Our payment has been securely processed. Please schedule your precise call slot using the button below.
+             </p>
+             
+             <button 
+               onClick={handleCalendlyRedirect}
+               className="w-full bg-blue-600 text-white font-semibold py-4 rounded-xl hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl flex justify-center items-center group active:scale-[0.98] mb-4"
+             >
+               <Calendar className="w-5 h-5 mr-3" />
+               <span>Schedule on Calendly</span>
+               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+             </button>
 
-        <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100 flex flex-col items-center justify-center mb-10 max-w-xs mx-auto">
-          <p className="text-sm text-slate-500 mb-1 font-medium">Redirecting to home in</p>
-          <div className="text-5xl font-extrabold text-slate-900 tracking-tighter">
-            {countdown}
+             <button onClick={() => router.push('/')} className="text-sm font-medium text-slate-500 hover:text-slate-900 transition">
+               Return to home
+             </button>
           </div>
-          <p className="text-xs text-slate-400 mt-2 uppercase tracking-wider font-semibold">seconds</p>
-        </div>
+        ) : (
+          <div>
+            <p className="text-slate-600 mb-8 leading-relaxed md:text-lg">
+              Thank you for choosing Dietician Deepali Sachan. Your consultation request has been securely submitted and your slot is booked. We will review your dossier and get in touch with you shortly.
+            </p>
 
-        <button 
-          onClick={() => router.push('/')}
-          className="w-full bg-slate-900 text-white font-semibold py-4 rounded-xl hover:bg-slate-800 transition-all shadow-lg hover:shadow-xl flex justify-center items-center group active:scale-[0.98]"
-        >
-          <span>Return to Home Now</span>
-          <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-        </button>
+            <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100 flex flex-col items-center justify-center mb-10 max-w-xs mx-auto">
+              <p className="text-sm text-slate-500 mb-1 font-medium">Redirecting to home in</p>
+              <div className="text-5xl font-extrabold text-slate-900 tracking-tighter">
+                {countdown}
+              </div>
+              <p className="text-xs text-slate-400 mt-2 uppercase tracking-wider font-semibold">seconds</p>
+            </div>
+
+            <button 
+              onClick={() => router.push('/')}
+              className="w-full bg-slate-900 text-white font-semibold py-4 rounded-xl hover:bg-slate-800 transition-all shadow-lg hover:shadow-xl flex justify-center items-center group active:scale-[0.98]"
+            >
+              <span>Return to Home Now</span>
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+        )}
+        
       </motion.div>
     </div>
   );
+}
+
+export default function PaymentSuccess() {
+  return (
+    <Suspense fallback={<div className="min-h-[80vh] flex items-center justify-center">Loading...</div>}>
+      <SuccessContent />
+    </Suspense>
+  )
 }
