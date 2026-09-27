@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, UploadCloud, Lock, CheckCircle2, FileText, Activity, Heart, Carrot, User, Mail, Phone } from 'lucide-react';
+import { ChevronRight, ChevronLeft, UploadCloud, Lock, CheckCircle2, FileText, Activity, Heart, Carrot, User, Mail, Phone, ArrowUpRight } from 'lucide-react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
@@ -55,14 +55,12 @@ export default function ConsultationForm() {
     nextStep();
   };
 
-  const initPayment = async () => {
+  const initPayment = async (selectedPlan) => {
     setIsProcessing(true);
-
-    const amount = formData.planType === 'monthly_plan' ? 1800 : 500;
 
     try {
       const { data } = await axios.post('/api/razorpay/create-order', {
-        amount: amount
+        amount: selectedPlan.price
       });
 
       const heightInCm = getHeightInCm();
@@ -72,7 +70,7 @@ export default function ConsultationForm() {
         amount: data.amount,
         currency: data.currency,
         name: "Dietician Deepali Sachan",
-        description: formData.planType === 'monthly_plan' ? "Personalized Diet Plan (Monthly)" : "Diet chart",
+        description: selectedPlan.name,
         order_id: data.id,
         handler: async function (response) {
           try {
@@ -91,7 +89,7 @@ export default function ConsultationForm() {
             vFormData.append('goal', formData.goal);
             vFormData.append('diet', formData.diet);
             vFormData.append('medicalHistory', formData.medicalHistory);
-            vFormData.append('planType', formData.planType);
+            vFormData.append('planType', selectedPlan.id);
 
             if (formData.file) {
               vFormData.append('file', formData.file);
@@ -173,7 +171,7 @@ export default function ConsultationForm() {
   const inputClass = "w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-slate-900 focus:border-transparent outline-none text-sm transition";
 
   return (
-    <div className="w-full max-w-2xl mx-auto bg-white rounded-3xl shadow-xl shadow-slate-900/5 overflow-hidden min-h-[580px] flex flex-col relative border border-slate-200/80">
+    <div className={`w-full mx-auto bg-white rounded-3xl shadow-xl shadow-slate-900/5 overflow-hidden flex flex-col relative border border-slate-200/80 transition-all duration-500 max-h-[90vh] ${step === 6 ? 'max-w-5xl min-h-[85vh] md:min-h-[700px]' : 'max-w-2xl min-h-[580px]'}`}>
       {/* Progress bar */}
       <div className="bg-slate-50 px-8 py-5 border-b border-slate-200/80 flex justify-between items-center z-10">
         <div>
@@ -488,59 +486,148 @@ export default function ConsultationForm() {
               </form>
             )}
 
-            {/* STEP 6: Payment Lock Screen */}
+            {/* STEP 6: Payment Lock Screen / Pricing Plans */}
             {step === 6 && (
-              <div className="h-full flex flex-col items-center justify-center text-center space-y-5 py-2">
-                <div className="w-16 h-16 bg-slate-900 rounded-full flex items-center justify-center text-white shadow-lg shadow-slate-900/20 mb-2">
-                  <Lock className="w-7 h-7" />
-                </div>
-
-                <div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-2 tracking-tight">Select Your Plan</h3>
+              <div className="flex flex-col pt-2 pb-8">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">Select Your Plan</h3>
                   <p className="text-slate-600 max-w-sm mx-auto text-sm leading-relaxed mb-4">
                     Your details have been saved. Choose a plan to send your dossier directly to Dietician Deepali Sachan.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 gap-3 w-full max-w-sm">
-                  <button
-                    onClick={() => setFormData({ ...formData, planType: 'diet_chart' })}
-                    className={`text-left p-4 rounded-xl border-2 transition-all ${formData.planType === 'diet_chart'
-                        ? 'border-emerald-600 bg-emerald-50 shadow-sm'
-                        : 'border-slate-200 bg-white hover:border-slate-300'
-                      }`}
-                  >
-                    <div className="flex justify-between items-center mb-1">
-                      <h4 className="font-bold text-slate-900">Diet chart</h4>
-                      <span className="font-bold text-emerald-700">₹500</span>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mx-auto items-stretch place-items-stretch">
+                  
+                  {/* Plan 1: 1 Time Plan */}
+                  <div className="bg-white rounded-3xl border border-slate-200 shadow-sm md:hover:shadow-2xl md:hover:-translate-y-2 md:hover:scale-[1.02] transition-all duration-300 p-6 flex flex-col h-full ring-1 ring-slate-100 relative group overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-amber-50 rounded-bl-full -mr-16 -mt-16 transition-transform duration-500 group-hover:scale-110 opacity-70"></div>
+                    <div className="mb-4 relative">
+                      <span className="inline-block bg-amber-100 text-amber-900 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-amber-200/60 shadow-sm">
+                        1 Time Plan
+                      </span>
+                      <h4 className="text-4xl font-extrabold text-emerald-800 mb-2 tracking-tighter">₹ 600</h4>
+                      <p className="text-[13px] text-slate-600 font-medium leading-relaxed min-h-[50px]">
+                        Recommended for trial users and for clinical conditions.
+                      </p>
                     </div>
-                  </button>
 
-                  <button
-                    onClick={() => setFormData({ ...formData, planType: 'monthly_plan' })}
-                    className={`text-left p-4 rounded-xl border-2 transition-all ${formData.planType === 'monthly_plan'
-                        ? 'border-emerald-600 bg-emerald-50 shadow-sm'
-                        : 'border-slate-200 bg-white hover:border-slate-300'
-                      }`}
-                  >
-                    <div className="flex justify-between items-center mb-1">
-                      <h4 className="font-bold text-slate-900">Personalized Diet Plan</h4>
-                      <span className="font-bold text-emerald-700">₹1,800</span>
+                    <button
+                      onClick={() => initPayment({ id: '1_time', name: '1 Time Plan', price: 600 })}
+                      disabled={isProcessing}
+                      className="w-full bg-slate-900 text-white font-bold py-3.5 rounded-full hover:bg-slate-800 transition shadow-lg active:scale-[0.98] disabled:opacity-70 flex justify-between items-center px-6 mb-6 mt-2"
+                    >
+                      <span className="tracking-wide">BUY NOW</span>
+                      <div className="bg-white/20 p-1 rounded-full"><ArrowUpRight className="w-4 h-4" /></div>
+                    </button>
+
+                    <div className="w-full h-px bg-slate-100 mb-6"></div>
+
+                    <ul className="space-y-4 mb-4 flex-1">
+                      {[
+                        "1 Session / Call",
+                        "1 Diet Plan",
+                        "No Follow Ups",
+                        "No Goal Tracking",
+                      ].map((feature, idx) => (
+                        <li key={idx} className="flex items-start">
+                          <CheckCircle2 className={`w-5 h-5 mr-3 flex-shrink-0 ${idx < 2 ? 'text-emerald-500' : 'text-slate-300'}`} />
+                          <span className={`text-sm ${idx < 2 ? 'text-slate-700 font-medium' : 'text-slate-500 line-through decoration-slate-300'}`}>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Plan 2: 4 Week Plan */}
+                  <div className="bg-white rounded-3xl border-2 border-emerald-600 shadow-xl shadow-emerald-900/5 md:hover:shadow-2xl md:hover:-translate-y-2 md:hover:scale-[1.05] transition-all duration-300 p-6 flex flex-col h-full relative group overflow-hidden md:-mt-2 md:mb-2 z-10 scale-100 md:scale-[1.02] bg-emerald-50/10">
+                    <div className="absolute top-0 inset-x-0 bg-emerald-600 text-white text-center text-[10px] font-bold uppercase tracking-widest py-1.5 transition-all group-hover:py-2">
+                      Most Popular
                     </div>
-                    <p className="text-xs text-slate-500 font-medium">(Monthly Base)</p>
-                  </button>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-100/50 rounded-bl-full -mr-16 -mt-16 transition-transform duration-500 group-hover:scale-110 opacity-70"></div>
+                    
+                    <div className="mb-4 relative pt-5">
+                      <span className="inline-block bg-emerald-100 text-emerald-900 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-emerald-200/60 shadow-sm">
+                        4 Week Plan
+                      </span>
+                      <h4 className="text-4xl font-extrabold text-emerald-800 mb-2 tracking-tighter">₹ 2,000</h4>
+                      <p className="text-[13px] text-slate-600 font-medium leading-relaxed min-h-[50px]">
+                        Approx. up to <strong className="text-emerald-700">3-4 kg weight loss</strong> (applies to weight loss cases).
+                      </p>
+                    </div>
+
+                    <button
+                      onClick={() => initPayment({ id: '4_week', name: '4 Week Plan', price: 2000 })}
+                      disabled={isProcessing}
+                      className="w-full bg-slate-900 text-white font-bold py-3.5 rounded-full hover:bg-slate-800 transition shadow-lg active:scale-[0.98] disabled:opacity-70 flex justify-between items-center px-6 mb-6 mt-2"
+                    >
+                      <span className="tracking-wide">BUY NOW</span>
+                      <div className="bg-white/20 p-1 rounded-full"><ArrowUpRight className="w-4 h-4" /></div>
+                    </button>
+
+                    <div className="w-full h-px bg-slate-100 mb-6"></div>
+
+                    <ul className="space-y-4 mb-4 flex-1">
+                      {[
+                        "4 Sessions / Calls",
+                        "Up to 4 Diet Plans (each 7 Days)",
+                        "1 time WhatsApp support in a day",
+                        "Regular tracking of food dairy",
+                        "Goal progress tracking"
+                      ].map((feature, idx) => (
+                        <li key={idx} className="flex items-start">
+                          <CheckCircle2 className="w-5 h-5 text-emerald-500 mr-3 flex-shrink-0" />
+                          <span className="text-sm text-slate-700 font-medium">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Plan 3: 12 Week Plan */}
+                  <div className="bg-white rounded-3xl border border-slate-200 shadow-sm md:hover:shadow-2xl md:hover:-translate-y-2 md:hover:scale-[1.02] transition-all duration-300 p-6 flex flex-col h-full ring-1 ring-slate-100 relative group overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -mr-16 -mt-16 transition-transform duration-500 group-hover:scale-110 opacity-70"></div>
+                    
+                    <div className="mb-4 relative">
+                      <span className="inline-block bg-blue-100 text-blue-900 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-blue-200/60 shadow-sm">
+                        12 Week Plan
+                      </span>
+                      <h4 className="text-4xl font-extrabold text-emerald-800 mb-2 tracking-tighter">₹ 5,000</h4>
+                      <p className="text-[13px] text-slate-600 font-medium leading-relaxed min-h-[50px]">
+                        Approx. up to <strong className="text-emerald-700">9-10 kg weight loss</strong> for committed transformations.
+                      </p>
+                    </div>
+
+                    <button
+                      onClick={() => initPayment({ id: '12_week', name: '12 Week Plan', price: 5000 })}
+                      disabled={isProcessing}
+                      className="w-full bg-slate-900 text-white font-bold py-3.5 rounded-full hover:bg-slate-800 transition shadow-lg active:scale-[0.98] disabled:opacity-70 flex justify-between items-center px-6 mb-6 mt-2"
+                    >
+                      <span className="tracking-wide">BUY NOW</span>
+                      <div className="bg-white/20 p-1 rounded-full"><ArrowUpRight className="w-4 h-4" /></div>
+                    </button>
+
+                    <div className="w-full h-px bg-slate-100 mb-6"></div>
+
+                    <ul className="space-y-4 mb-4 flex-1">
+                      {[
+                        "12 Sessions / Calls",
+                        "Up to 12 Diet Plans",
+                        "1 time WhatsApp support in a day",
+                        "Goal progress tracking",
+                        "Food recipes",
+                        "Regular tracking"
+                      ].map((feature, idx) => (
+                        <li key={idx} className="flex items-start">
+                          <CheckCircle2 className="w-5 h-5 text-emerald-500 mr-3 flex-shrink-0" />
+                          <span className="text-sm text-slate-700 font-medium">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
                 </div>
 
-                <div className="w-full max-w-sm pt-4">
-                  <button
-                    onClick={initPayment}
-                    disabled={isProcessing}
-                    className="w-full bg-slate-900 text-white font-bold text-base py-4 rounded-xl hover:bg-slate-800 transition shadow-lg flex justify-center items-center disabled:opacity-70 active:scale-[0.99]"
-                  >
-                    {isProcessing ? 'Processing...' : `Pay ₹${formData.planType === 'monthly_plan' ? '1,800' : '500'} via Razorpay`}
-                  </button>
-                  <button onClick={prevStep} className="text-slate-500 hover:text-slate-900 text-xs font-medium mt-4 transition">
-                    Go back and edit details
+                <div className="text-center mt-8">
+                  <button onClick={prevStep} disabled={isProcessing} className="text-slate-500 hover:text-slate-900 text-sm font-medium transition disabled:opacity-50">
+                    ← Go back and edit details
                   </button>
                 </div>
               </div>
