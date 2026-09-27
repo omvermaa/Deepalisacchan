@@ -102,7 +102,7 @@ export default function ConsultationForm() {
             });
 
             if (verifyRes.status === 200) {
-              router.push(`/payment-success?type=${formData.planType}`);
+              router.push('/payment-success');
             }
           } catch (err) {
             console.error(err);

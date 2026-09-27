@@ -53,7 +53,8 @@ export default function PhoneConsultationForm() {
 
             if (verifyRes.status === 200) {
               setStatus('success');
-              router.push('/payment-success?type=phone');
+              setFormData({ name: '', phone: '', query: '' });
+              alert("Payment successful! We will call you shortly.");
             }
           } catch (err) {
             console.error(err);
