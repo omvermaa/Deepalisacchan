@@ -59,7 +59,7 @@ export default function ConsultationForm() {
     setIsProcessing(true);
 
     const amount = formData.planType === 'monthly_plan' ? 1800 : 500;
-    
+
     try {
       const { data } = await axios.post('/api/razorpay/create-order', {
         amount: amount
@@ -72,7 +72,7 @@ export default function ConsultationForm() {
         amount: data.amount,
         currency: data.currency,
         name: "Dietician Deepali Sachan",
-        description: formData.planType === 'monthly_plan' ? "Personalized Diet Plan (Monthly)" : "Personalized Diet Chart",
+        description: formData.planType === 'monthly_plan' ? "Personalized Diet Plan (Monthly)" : "Diet chart",
         order_id: data.id,
         handler: async function (response) {
           try {
@@ -501,29 +501,27 @@ export default function ConsultationForm() {
                     Your details have been saved. Choose a plan to send your dossier directly to Dietician Deepali Sachan.
                   </p>
                 </div>
-                
+
                 <div className="grid grid-cols-1 gap-3 w-full max-w-sm">
                   <button
                     onClick={() => setFormData({ ...formData, planType: 'diet_chart' })}
-                    className={`text-left p-4 rounded-xl border-2 transition-all ${
-                      formData.planType === 'diet_chart' 
-                        ? 'border-emerald-600 bg-emerald-50 shadow-sm' 
+                    className={`text-left p-4 rounded-xl border-2 transition-all ${formData.planType === 'diet_chart'
+                        ? 'border-emerald-600 bg-emerald-50 shadow-sm'
                         : 'border-slate-200 bg-white hover:border-slate-300'
-                    }`}
+                      }`}
                   >
                     <div className="flex justify-between items-center mb-1">
-                      <h4 className="font-bold text-slate-900">Personalized Diet Chart</h4>
+                      <h4 className="font-bold text-slate-900">Diet chart</h4>
                       <span className="font-bold text-emerald-700">₹500</span>
                     </div>
                   </button>
 
                   <button
                     onClick={() => setFormData({ ...formData, planType: 'monthly_plan' })}
-                    className={`text-left p-4 rounded-xl border-2 transition-all ${
-                      formData.planType === 'monthly_plan' 
-                        ? 'border-emerald-600 bg-emerald-50 shadow-sm' 
+                    className={`text-left p-4 rounded-xl border-2 transition-all ${formData.planType === 'monthly_plan'
+                        ? 'border-emerald-600 bg-emerald-50 shadow-sm'
                         : 'border-slate-200 bg-white hover:border-slate-300'
-                    }`}
+                      }`}
                   >
                     <div className="flex justify-between items-center mb-1">
                       <h4 className="font-bold text-slate-900">Personalized Diet Plan</h4>

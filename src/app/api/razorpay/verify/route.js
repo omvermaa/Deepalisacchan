@@ -11,12 +11,12 @@ export async function POST(request) {
     }
 
     const formData = await request.formData();
-    
+
     // Payment specific details
     const razorpay_order_id = formData.get('razorpay_order_id');
     const razorpay_payment_id = formData.get('razorpay_payment_id');
     const razorpay_signature = formData.get('razorpay_signature');
-    
+
     // User details
     const name = formData.get('name');
     const email = formData.get('email');
@@ -29,12 +29,12 @@ export async function POST(request) {
     const diet = formData.get('diet');
     const medicalHistory = formData.get('medicalHistory');
     const planType = formData.get('planType');
-    
+
     // Formatting plan name
-    const planName = planType === 'monthly_plan' 
-      ? 'Personalized Diet Plan (Monthly) - ₹1,800' 
-      : (planType === 'diet_chart' ? 'Personalized Diet Chart - ₹500' : 'Priority Consultation');
-    
+    const planName = planType === 'monthly_plan'
+      ? 'Personalized Diet Plan (Monthly) - ₹1,800'
+      : (planType === 'diet_chart' ? 'Diet chart - ₹500' : 'Priority Consultation');
+
     // File
     const file = formData.get('file');
 
