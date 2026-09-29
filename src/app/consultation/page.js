@@ -35,7 +35,7 @@ export default function ConsultationPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 text-white">
                   <p className="font-bold text-base">Direct 1-on-1 Guidance</p>
-                  <p className="text-xs text-slate-300">With Dietician Deepali Sachan (M.Sc, 12+ Yrs Exp)</p>
+                  <p className="text-xs text-slate-300">With Dietician Deepali Sachan (M.Sc, 13+ Yrs Exp)</p>
                 </div>
               </div>
             </div>

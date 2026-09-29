@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deepalisachan.com'),
   title: "Dietician Deepali Sachan - Portfolio & Consultation",
-  description: "Personalized diet plans and expert nutrition from Dietician Deepali Sachan (M.Sc Food Nutrition & Dietetics) with 12+ years of experience.",
+  description: "Personalized diet plans and expert nutrition from Dietician Deepali Sachan (M.Sc Food Nutrition & Dietetics) with 13+ years of experience.",
   keywords: ["Dietician Deepali Sachan", "Dietician in Kanpur", "Deepali Sachan", "Best Dietician", "Weight Loss Diet", "PCOS Diet"],
   openGraph: {
     type: "website",

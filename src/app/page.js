@@ -18,7 +18,7 @@ export default async function Home() {
       <section className="relative overflow-hidden bg-slate-950 text-white min-h-[85vh] flex items-center justify-center">
         {/* Background Image with Reduced Tint Overlay & Increased Image Clarity */}
         <div className="absolute inset-0 z-0">
-          <Image 
+          <Image
             src="/images/dietitian-hero-bg.jpg"
             alt="Dietician Deepali Sachan"
             fill
@@ -33,27 +33,27 @@ export default async function Home() {
           <div className="max-w-3xl mx-auto text-center space-y-8">
             <div className="inline-flex items-center space-x-2 bg-slate-800/80 border border-slate-700/80 px-4 py-2 rounded-full text-slate-200 font-medium text-xs md:text-sm backdrop-blur-md shadow-xs">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>M.Sc Food Nutrition & Dietetics • 12+ Years Clinical Experience</span>
+              <span>M.Sc Food Nutrition & Dietetics • 13+ Years Clinical Experience</span>
             </div>
-            
+
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
               Transform Your Health with <br className="hidden md:block" />
               <span className="bg-gradient-to-r from-slate-100 via-slate-200 to-slate-400 bg-clip-text text-transparent underline decoration-slate-600 underline-offset-8">Personalized Nutrition</span>
             </h1>
-            
+
             <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal">
               Achieve your unique health goals through sustainable, science-backed diet plans crafted specifically for your body and lifestyle.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
-              <Link 
+              <Link
                 href="/consultation"
                 className="bg-white text-slate-900 px-8 py-4 rounded-full font-bold text-base hover:bg-slate-100 transition shadow-lg hover:shadow-2xl w-full sm:w-auto flex items-center justify-center space-x-2 active:scale-[0.98]"
               >
                 <span>Book Consultation</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link 
+              <Link
                 href="#calculator"
                 className="bg-slate-900/60 backdrop-blur-md text-slate-200 border border-slate-700/80 px-8 py-4 rounded-full font-medium text-base hover:bg-slate-800/80 transition w-full sm:w-auto flex items-center justify-center"
               >
@@ -68,7 +68,7 @@ export default async function Home() {
       <section className="py-20 md:py-28 bg-white border-b border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-12 gap-12 lg:gap-16 items-center">
-            
+
             {/* Image Column */}
             <div className="md:col-span-5 relative">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200 aspect-[4/5] group">
@@ -79,7 +79,7 @@ export default async function Home() {
                   className="object-cover object-top transition duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-80" />
-                
+
                 <div className="absolute bottom-6 left-6 right-6 text-white p-4 rounded-2xl bg-slate-900/70 backdrop-blur-md border border-white/10">
                   <p className="font-bold text-base">Dietician Deepali Sachan</p>
                   <p className="text-xs text-slate-300">M.Sc Food Nutrition & Dietetics • Clinical Nutritionist</p>
@@ -89,7 +89,7 @@ export default async function Home() {
               {/* Floating Badge */}
               <div className="absolute -top-6 -right-6 hidden sm:flex items-center space-x-3 bg-white p-4 rounded-2xl shadow-xl border border-slate-200/80">
                 <div className="w-12 h-12 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold text-lg">
-                  12+
+                  13+
                 </div>
                 <div>
                   <p className="font-bold text-slate-900 text-sm">Years Exp.</p>
@@ -102,7 +102,7 @@ export default async function Home() {
             <div className="md:col-span-7 space-y-6">
               <div className="inline-flex items-center space-x-2 bg-slate-100 border border-slate-200 px-3 py-1.5 rounded-full text-slate-800 text-xs font-semibold">
                 <Award className="w-4 h-4 text-slate-700" />
-                <span>M.Sc Food Nutrition & Dietetics • 12+ Years Experience</span>
+                <span>M.Sc Food Nutrition & Dietetics • 13+ Years Experience</span>
               </div>
 
               <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
@@ -156,41 +156,41 @@ export default async function Home() {
             <h2 className="text-3xl font-bold text-slate-900 mb-4 tracking-tight">Trusted by Client Success Stories</h2>
             <p className="text-slate-600">See what clients share about their sustainable transformation journey.</p>
           </div>
-          
+
           <div className="relative flex overflow-hidden group py-4">
             {/* The absolute overlay gradients for smooth side fading */}
             <div className="absolute left-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none" />
             <div className="absolute right-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none" />
-            
+
             <div className="flex animate-[marquee_50s_linear_infinite] group-hover:[animation-play-state:paused] space-x-6 sm:space-x-8 px-3 sm:px-4 min-w-max">
               {[
-                { 
-                  name: "Shweta Awasthi", 
+                {
+                  name: "Shweta Awasthi",
                   text: "So supportive and provided a positive outlook, made healthy eating easy and delicious. Thankyou so much.... Highly recommended 😇",
                   image: "/images/reviews/shweta_a.jpg"
                 },
-                { 
-                  name: "Ranjana Tripathi", 
+                {
+                  name: "Ranjana Tripathi",
                   text: "Thank you for helping me understand how to eat for my body and for giving me a new perspective on health. I feel more in control of my diet and so much better because of you",
                   image: "/images/reviews/ranjana.jpg"
                 },
-                { 
-                  name: "Shweta Vishwakarma", 
+                {
+                  name: "Shweta Vishwakarma",
                   text: "One of the best dietician in kanpur The dietician provided a well-structured and personalized diet plan that matched my lifestyle and preferences. Their guidance was clear, supportive, and scientifically accurate. I truly appreciate the consistent follow-up and the positive changes I noticed in my health.Thanku so much Dt. Deepali mam ❤️🫶💯",
                   image: "/images/reviews/shweta_v.jpg"
                 },
-                { 
-                  name: "Anshuman Tiwari", 
+                {
+                  name: "Anshuman Tiwari",
                   text: "Flexible diet plan easy to follow , it helped me lose 17 kg in 3 month. 😊",
                   image: "/images/reviews/anshuman.jpg"
                 },
-                { 
-                  name: "Anurag Savita", 
+                {
+                  name: "Anurag Savita",
                   text: "Maidam bahut achhi hai bahut pyar se bat karti hai",
                   image: null
                 },
-                { 
-                  name: "Arham mirza", 
+                {
+                  name: "Arham mirza",
                   text: "loose body weight 100 to 90 in 2 months \n nice effective body diet chart",
                   image: "/images/reviews/arham.jpg"
                 },
@@ -217,10 +217,10 @@ export default async function Home() {
                   <div className="flex items-center space-x-4 border-t border-slate-100 pt-5">
                     <div className="relative w-11 h-11 rounded-full overflow-hidden border border-slate-200 shadow-sm flex-shrink-0 bg-emerald-50">
                       {item.image ? (
-                        <Image 
-                          src={item.image} 
-                          alt={item.name} 
-                          fill 
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          fill
                           className="object-cover"
                         />
                       ) : (
@@ -241,33 +241,33 @@ export default async function Home() {
             {/* Seamless duplicate for continuous looping */}
             <div className="flex animate-[marquee_50s_linear_infinite] group-hover:[animation-play-state:paused] space-x-6 sm:space-x-8 px-3 sm:px-4 min-w-max" aria-hidden="true">
               {[
-                { 
-                  name: "Shweta Awasthi", 
+                {
+                  name: "Shweta Awasthi",
                   text: "So supportive and provided a positive outlook, made healthy eating easy and delicious. Thankyou so much.... Highly recommended 😇",
                   image: "/images/reviews/shweta_a.jpg"
                 },
-                { 
-                  name: "Ranjana Tripathi", 
+                {
+                  name: "Ranjana Tripathi",
                   text: "Thank you for helping me understand how to eat for my body and for giving me a new perspective on health. I feel more in control of my diet and so much better because of you",
                   image: "/images/reviews/ranjana.jpg"
                 },
-                { 
-                  name: "Shweta Vishwakarma", 
+                {
+                  name: "Shweta Vishwakarma",
                   text: "One of the best dietician in kanpur The dietician provided a well-structured and personalized diet plan that matched my lifestyle and preferences. Their guidance was clear, supportive, and scientifically accurate. I truly appreciate the consistent follow-up and the positive changes I noticed in my health.Thanku so much Dt. Deepali mam ❤️🫶💯",
                   image: "/images/reviews/shweta_v.jpg"
                 },
-                { 
-                  name: "Anshuman Tiwari", 
+                {
+                  name: "Anshuman Tiwari",
                   text: "Flexible diet plan easy to follow , it helped me lose 17 kg in 3 month. 😊",
                   image: "/images/reviews/anshuman.jpg"
                 },
-                { 
-                  name: "Anurag Savita", 
+                {
+                  name: "Anurag Savita",
                   text: "Maidam bahut achhi hai bahut pyar se bat karti hai",
                   image: null
                 },
-                { 
-                  name: "Arham mirza", 
+                {
+                  name: "Arham mirza",
                   text: "loose body weight 100 to 90 in 2 months \n nice effective body diet chart",
                   image: "/images/reviews/arham.jpg"
                 },
@@ -294,10 +294,10 @@ export default async function Home() {
                   <div className="flex items-center space-x-4 border-t border-slate-100 pt-5">
                     <div className="relative w-11 h-11 rounded-full overflow-hidden border border-slate-200 shadow-sm flex-shrink-0 bg-emerald-50">
                       {item.image ? (
-                        <Image 
-                          src={item.image} 
-                          alt={item.name} 
-                          fill 
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          fill
                           className="object-cover"
                         />
                       ) : (
@@ -326,7 +326,7 @@ export default async function Home() {
               <h2 className="text-3xl font-bold text-slate-900 mb-2 tracking-tight">Latest Nutrition Insights</h2>
               <p className="text-slate-600">Expert advice and actionable tips from Dietician Deepali.</p>
             </div>
-            <Link 
+            <Link
               href="/blogs"
               className="mt-4 sm:mt-0 flex items-center space-x-2 text-emerald-600 font-semibold hover:text-emerald-700 transition"
             >
@@ -341,8 +341,8 @@ export default async function Home() {
                 <Link key={blog._id} href={`/blogs/${blog.slug}`} className="group flex flex-col bg-slate-50 rounded-2xl border border-slate-100 overflow-hidden relative top-0 hover:-top-1 transition-all duration-300">
                   <div className="relative h-48 w-full bg-slate-200 overflow-hidden">
                     {blog.images && blog.images.length > 0 ? (
-                      <img 
-                        src={blog.images[0]} 
+                      <img
+                        src={blog.images[0]}
                         alt={blog.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
@@ -357,7 +357,7 @@ export default async function Home() {
                     <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-2 mb-3">
                       {blog.title}
                     </h3>
-                    <div 
+                    <div
                       className="text-sm text-slate-500 line-clamp-3 mb-4 flex-1"
                       dangerouslySetInnerHTML={{ __html: blog.content.replace(/<[^>]+>/g, '').substring(0, 120) + "..." }}
                     />
@@ -383,7 +383,7 @@ export default async function Home() {
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">Know Your Health Baseline</h2>
             <p className="text-slate-600">Use our free BMI calculator to get instant insights into your physical stats and next steps.</p>
           </div>
-          
+
           <BmiCalculator />
         </div>
       </section>
@@ -395,7 +395,7 @@ export default async function Home() {
           <p className="text-slate-300 text-base md:text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
             Skip generic advice. Get a customized, science-based diet plan tailored to your exact physical requirements and lifestyle.
           </p>
-          <Link 
+          <Link
             href="/consultation"
             className="inline-flex items-center space-x-2 bg-white text-slate-900 px-8 py-4 rounded-full font-bold text-base hover:bg-slate-100 transition shadow-xl active:scale-[0.98]"
           >
