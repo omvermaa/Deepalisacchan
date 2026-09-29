@@ -182,7 +182,7 @@ export default async function Home() {
                 {
                   name: "Anshuman Tiwari",
                   text: "Flexible diet plan easy to follow , it helped me lose 17 kg in 3 month. 😊",
-                  image: "/images/reviews/anshuman.jpg"
+                  image: null
                 },
                 {
                   name: "Anurag Savita",
@@ -197,6 +197,11 @@ export default async function Home() {
                 {
                   name: "Aman Verma",
                   text: "The Diet provided has helped me lose 10 kg weight in 4 months time and I love the new me, it was all possible because of Deepali ma'am, She adjusts your diet according to your needs and demands and not at all those fansy diets you see on Instagram. Her diet is easy to follow and gives results . I am so glad to see the new slim me , Thankyou Again",
+                  image: null
+                },
+                {
+                  name: "Pratik Trivedi",
+                  text: "I express my gratitude for giving exceptional care during my treatment starting February 2021. Within 4 months I was very satisfied — your diet gave me the right direction and progress in my health day by day. Because of your guidance, Dr. Gaurav Chawla sir discontinued my medicines and till now I am very happy. Your professionalism and empathy made a significant difference in my recovery.",
                   image: null
                 }
               ].map((item, idx) => (
@@ -259,7 +264,7 @@ export default async function Home() {
                 {
                   name: "Anshuman Tiwari",
                   text: "Flexible diet plan easy to follow , it helped me lose 17 kg in 3 month. 😊",
-                  image: "/images/reviews/anshuman.jpg"
+                  image: null
                 },
                 {
                   name: "Anurag Savita",
@@ -274,6 +279,11 @@ export default async function Home() {
                 {
                   name: "Aman Verma",
                   text: "The Diet provided has helped me lose 10 kg weight in 4 months time and I love the new me, it was all possible because of Deepali ma'am, She adjusts your diet according to your needs and demands and not at all those fansy diets you see on Instagram. Her diet is easy to follow and gives results . I am so glad to see the new slim me , Thankyou Again",
+                  image: null
+                },
+                {
+                  name: "Pratik Trivedi",
+                  text: "I express my gratitude for giving exceptional care during my treatment starting February 2021. Within 4 months I was very satisfied — your diet gave me the right direction and progress in my health day by day. Because of your guidance, Dr. Gaurav Chawla sir discontinued my medicines and till now I am very happy. Your professionalism and empathy made a significant difference in my recovery.",
                   image: null
                 }
               ].map((item, idx) => (
